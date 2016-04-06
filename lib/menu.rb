@@ -1,4 +1,5 @@
 require "./messages"
+require "./game"
 
 class Menu
 
