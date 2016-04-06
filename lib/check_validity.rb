@@ -7,7 +7,7 @@
 # class CheckValidity
 
 def adjacent?(array_of_coordinates_for_one_boat)
-  
+
 end
 
 
@@ -22,10 +22,10 @@ end
 
 # end
 
-# boat_2_units = [["A", 1], ["B", 1]]
-# boat_3_units = [["B", 1], ["B", 2], ["B", 3]]
-#
-# no_overlap(boat_2_units, boat_3_units)
+boat_2_units = [[0, 0], [1, 0]]
+boat_3_units = [[1, 0], [1, 1], [1, 2]]
+
+no_overlap(boat_2_units, boat_3_units)
 
 #should also be checking the validity of the guesses
 # guesses must be included in possible coordinates

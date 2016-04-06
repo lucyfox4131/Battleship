@@ -5,12 +5,12 @@ class Menu
 
 def initialize
   run
+  menu
 end
 
 def run
   message = Messages.new
   message.welcome
-  menu
 end
 
 def menu

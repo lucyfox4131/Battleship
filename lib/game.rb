@@ -1,8 +1,13 @@
+require './place_ships'
+require './check_validity'
+
 class Game
 
   def initialize
+    computer_ships = PlaceShips.new
+    computer_ships.place_computer_ships
     @column_letters = ['A', 'B', 'C', 'D', 'E', 'F','G', 'H', 'I', 'J']
-    board_layout(4)
+    board_layout(10)
   end
 
   # Generate computer board
