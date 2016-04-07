@@ -8,8 +8,12 @@ class Game
     @user_board = Board.new(4, "User Board")
     @computer_board.output_board
     @user_board.output_board
+    @computer_board.place_computer_ships
+    @computer_board.output_board
   end
-  #
+
+
+
   # def getPlayerGuess
   #   message = Messages.new
   #   message.player_placement
