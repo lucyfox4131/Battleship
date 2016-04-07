@@ -14,7 +14,6 @@ class PlaceShips
   end
 
   def place_computer_ships
-    puts 'HEYYY DOES THIS WORK'
     loop do
       @two = @two_unit_ship.sample
       @three = @three_unit_ship.sample
@@ -25,7 +24,7 @@ class PlaceShips
   def check_if_ships_overlap?(two_unit_ship, three_unit_ship)
     # two = two_unit_ship.split
     # three = three_unit_ship.split
-    result = three & two
+    result = three_unit_ship & two_unit_ship
     if result.empty?
       return true
     else
@@ -59,9 +58,9 @@ class PlaceShips
 end
 
 
-game = PlaceShips.new
-puts game.check_if_player_two_ship_works("A1 A2")
-puts game.check_if_player_three_ship_works("A1 A2 A3")
-puts game.check_if_ships_overlap?("A1 A2", "A1 A2 A3")
-puts game.two
-puts game.three
+# game = PlaceShips.new
+# puts game.check_if_player_two_ship_works("A1 A2")
+# puts game.check_if_player_three_ship_works("A1 A2 A3")
+# puts game.check_if_ships_overlap?("A1 A2", "A1 A2 A3")
+# puts game.two
+# puts game.three
