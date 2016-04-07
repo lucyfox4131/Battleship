@@ -1,4 +1,6 @@
 require './lib/ship'
+require './lib/input_validation'
+require 'pry'
 
 class Board
 
@@ -53,11 +55,11 @@ class Board
         if( @board[start_row][start_column+i] == 'S' )
           return false
         end
-        ship_array << {:y => start_row, :x => (start_column +i)}
+        ship_array << {:x => start_row, :y => (start_column +i)}
         i += 1
       end
       ship_array.each do |location|
-        update_board(location[:x], location[:y], "S")
+        update_board(location[:y], location[:x], "S")
       end
       p ship_array
       return ship_array
@@ -70,14 +72,69 @@ class Board
         if( @board[start_row][start_column+i] == 'S' )
           return false
         end
-        ship_array << {:y => (start_row + i), :x => start_column}
+        ship_array << {:x => (start_row + i), :y => start_column}
         i += 1
       end
       ship_array.each do |location|
-        update_board(location[:x], location[:y], "S")
+        update_board(location[:y], location[:x], "S")
       end
       p ship_array
       return ship_array
+    end
+  end
+
+  def place_user_ships(user_two_ship, user_three_ship)
+    puts "user_two_ship #{user_two_ship}"
+    puts "user_three_ship #{user_three_ship}"
+
+    binding.pry
+
+    # normalize input string to cordinate hashes
+
+    transformed_two_ship = tranformCords(user_two_ship)
+    transformed_three_ship = tranformCords(user_three_ship)
+    if !validate_user_ship_coordinates(user_two_ship, user_three_ship)
+      # we failed to validate return false
+      return false
+    end
+    if ships_overlap(user_two_ship, user_three_ship)
+      # ships had valid coordinates positions but overlapped
+      return false
+    end
+    # we are valid
+    return true
+  end
+
+  def tranformCords( string )
+    cordinate_array = string.split
+    puts "cordinate_array #{cordinate_array}"
+  end
+
+  # check our direction and
+  def validate_user_ship_coordinates(user_two_ship, user_three_ship)
+    two_ship_hash = Input_Validation.create_coordinate_hash_array(user_two_ship.split)
+    puts "two_ship_hash#{two_ship_hash}"
+
+    puts "here"
+    transformed_two_ship = Input_Validation.parse_guess_for_coordinate(user_two_ship);
+    transformed_three_ship = Input_Validation.parse_guess_for_coordinate(user_three_ship);
+    puts "transformed_two_ship#{transformed_two_ship}"
+    puts "transformed_three_ship#{transformed_three_ship}"
+    if transformed_three_ship && transformed_two_ship
+      # valid coordinates
+      # check overlap
+      # check direction
+    end
+    # convert
+  end
+
+  def find_direction(player_hash_array)
+    if player_hash_array[0][:x] == player_hash_array[1][:x]
+      return "Vertical"
+    elsif player_hash_array[0][:y] == player_hash_array[1][:y]
+      return "Horizontal"
+    else
+      return false
     end
   end
 

@@ -9,45 +9,23 @@ class Game
     @user_board = Board.new(4, "User Board")
     @computer_board.place_computer_ships
     @computer_board.output_board
-    get_player_ships
+    loop do
+        placed_user_ships = @user_board.place_user_ships(get_player_two_ships, get_player_three_ships)
+      break if placed_user_ships
+    end
   end
 
-  def get_player_ships
+  def get_player_two_ships
     message = Messages.new
     message.player_placement
-    player_choice = gets.chomp.upcase.split
-    create_coordinate_hash_array(player_choice)
+    player_two_ship = gets.chomp.upcase
   end
 
-  def parse_guess_for_coordinate(string)
-    coordinate_array = string.chars
-    x_location = @column_letters.find_index(coordinate_array[0])
-    y_location = (coordinate_array[1].to_i)-1 
-    {:x => x_location, :y => y_location}
+  def get_player_three_ships
+    message = Messages.new
+    message.player_three_boat
+    player_three_ship = gets.chomp.upcase
   end
-
-  def create_coordinate_hash_array(array)
-    player_coordinate_array = []
-    array.each do |location|
-      player_coordinate_array << parse_guess_for_coordinate(location)
-    end
-    puts "SDFLKJADHF"
-    puts player_coordinate_array
-    player_coordinate_array
-  end
-
-
-
-  # def getPlayerGuess
-  #   message = Messages.new
-  #   message.player_placement
-  #   player_choice = gets.chomp.downcase
-  #   loop do
-  #     puts "THIS WAS YOUR GUESS #{player_choice}"
-  #     break if player_choice == 'q'
-  #   end
-
-
 end
 
 
