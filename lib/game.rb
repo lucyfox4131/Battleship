@@ -1,5 +1,5 @@
-require './place_ships'
-require './messages'
+require './lib/place_ships'
+require './lib/messages'
 
 class Game
 

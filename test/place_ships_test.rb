@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require "minitest/pride"
 
-class GenerateTest < Minitest::Test
+class PlaceShipsTest < Minitest::Test
 
 end

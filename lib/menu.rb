@@ -1,5 +1,5 @@
-require "./messages"
-require "./game"
+require "./lib/messages"
+require "./lib/game"
 
 class Menu
 

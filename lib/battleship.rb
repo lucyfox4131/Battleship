@@ -1,2 +1,2 @@
-require "./menu"
+require "./lib/menu"
 new_game = Menu.new
