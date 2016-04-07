@@ -24,7 +24,11 @@ class Game
     message = Messages.new
     message.player_placement
     player_choice = gets.chomp.downcase
-    puts "THIS WAS YOUR GUESS #{player_choice}"
+    loop do
+      puts "THIS WAS YOUR GUESS #{player_choice}"
+      break if player_choice == 'q'
+    end
+
   end
 
 end

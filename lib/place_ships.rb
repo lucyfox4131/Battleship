@@ -15,21 +15,36 @@ class PlaceShips
 
   def place_computer_ships
     puts 'HEYYY DOES THIS WORK'
-    @two = @two_unit_ship.sample
-    @three = @three_unit_ship.sample
+    loop do
+      @two = @two_unit_ship.sample
+      @three = @three_unit_ship.sample
+      break if check_if_ships_overlap?(@two, @three)
+    end
   end
 
   def check_if_ships_overlap?(two_unit_ship, three_unit_ship)
+    # two = two_unit_ship.split
+    # three = three_unit_ship.split
+    result = three & two
+    if result.empty?
+      return true
+    else
+      return false
+    end
+  end
+
+  def check_if_player_ships_overlap?(two_unit_ship, three_unit_ship)
     two = two_unit_ship.split
     three = three_unit_ship.split
     result = three & two
     if result.empty?
-      two
-      three
+      return true
     else
-      puts "THESE ARE THE DUPLICATES #{result}. Please guess again and do not use the same coordinates: "
+      return false
     end
   end
+
+
 
   def check_if_player_two_ship_works(player_ship)
     player_ship_formated = player_ship.split
@@ -43,8 +58,10 @@ class PlaceShips
 
 end
 
-#
-# game = PlaceShips.new
-# puts game.check_if_player_two_ship_works("A1 A2")
-# puts game.check_if_player_three_ship_works("A1 A2 A3")
-# puts game.check_if_ships_overlap?("A1 A2", "A1 A2 A3")
+
+game = PlaceShips.new
+puts game.check_if_player_two_ship_works("A1 A2")
+puts game.check_if_player_three_ship_works("A1 A2 A3")
+puts game.check_if_ships_overlap?("A1 A2", "A1 A2 A3")
+puts game.two
+puts game.three
