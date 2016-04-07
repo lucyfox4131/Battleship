@@ -1,3 +1,5 @@
+require 'pry'
+
 class Board
 
   def initialize(num, name)
@@ -27,12 +29,20 @@ class Board
 
   def place_computer_ships
     puts "PLACING SHIPS"
-    place_computer_ship(3)
-    # place_computer_ship(2)
+    # place_computer_ship(3)
+    destroyer = Ship.new(place_computer_ship(3), 3, "Destroyer")
+    output_board
+    ship_location = nil
+    loop do
+      ship_location = place_computer_ship(2)
+        break if ship_location
+    end
+    minisub = Ship.new(ship_location, 2, "Minisub")
   end
 
   def place_computer_ship(ship_length)
     puts "WOOO #{ship_length}"
+    ship_array = []
     direction = rand(0..1)
     valid_ship_start_points = @board_size - ship_length + 1
     if direction == 0
@@ -41,21 +51,29 @@ class Board
       start_row = rand(0...@board_size)
       i = 0
       while i < ship_length do
+        if( @board[start_row][start_column+i] == 'S' )
+          return false
+        end
         update_board(start_row, start_column + i, "S")
+        ship_array << {x => start_row, y => (start_column +i)}
         i += 1
       end
+      return ship_array
     else
       #vertical
       start_column = rand(0...@board_size)
       start_row = rand(0...valid_ship_start_points)
       i = 0
       while i < ship_length do
+        if( @board[start_row][start_column+i] == 'S' )
+          return false
+        end
         update_board(start_row + i, start_column, "S")
+        ship_array << {x => (start_row + i), y => start_column}
         i += 1
       end
+      return ship_array
     end
-
-
   end
 
   def update_board(x, y, new_value)
