@@ -28,6 +28,34 @@ class PlaceShipsTest < Minitest::Test
     assert_equal true, result
   end
 
+  def test_if_player_two_ship_is_valid_option
+    result = @new_ships.player_two_ship_valid?("A1 A2")
+    assert_equal true, result
+  end
 
+  def test_if_player_two_ship_is_not_valid_option
+    result = @new_ships.player_two_ship_valid?("G1 A2")
+    assert_equal false, result
+  end
+
+  def test_if_player_two_ship_is_wrong_size
+    result = @new_ships.player_two_ship_valid?("A2")
+    assert_equal false, result
+  end
+
+  def test_if_player_three_ship_is_valid_option
+    result = @new_ships.player_three_ship_valid?("A1 A2 A3")
+    assert_equal true, result
+  end
+
+  def test_if_player_three_ship_is_not_valid_option
+    result = @new_ships.player_three_ship_valid?("G1 A2 A3")
+    assert_equal false, result
+  end
+
+  def test_if_player_three_ship_is_wrong_length
+    result = @new_ships.player_three_ship_valid?("G1 A2")
+    assert_equal false, result
+  end
 
 end

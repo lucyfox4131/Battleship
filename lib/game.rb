@@ -1,35 +1,24 @@
-require './lib/place_ships'
+require './lib/board'
 require './lib/messages'
 
 class Game
 
   def initialize
-    # computer_ships = PlaceShips.new
-    # computer_ships.place_computer_ships
-    # @column_letters = ['A', 'B', 'C', 'D']
-    # board_layout(4)
-    generate_computer_ships
+    @computer_board = Board.new(4, "Computer Board")
+    @user_board = Board.new(4, "User Board")
+    @computer_board.output_board
+    @user_board.output_board
   end
+  #
+  # def getPlayerGuess
+  #   message = Messages.new
+  #   message.player_placement
+  #   player_choice = gets.chomp.downcase
+  #   loop do
+  #     puts "THIS WAS YOUR GUESS #{player_choice}"
+  #     break if player_choice == 'q'
+  #   end
 
-  def generate_computer_ships
-    new_ships = PlaceShips.new
-    comp_two_unit_ship = new_ships.two
-    comp_three_unit_ship = new_ships.three
-    puts "Computer generated two unit ship is #{comp_two_unit_ship}"
-    puts "Computer generated three unit ship is #{comp_three_unit_ship}"
-    getPlayerGuess
-  end
-
-  def getPlayerGuess
-    message = Messages.new
-    message.player_placement
-    player_choice = gets.chomp.downcase
-    loop do
-      puts "THIS WAS YOUR GUESS #{player_choice}"
-      break if player_choice == 'q'
-    end
-
-  end
 
 end
 

@@ -44,13 +44,12 @@ class PlaceShips
   end
 
 
-
-  def check_if_player_two_ship_works(player_ship)
+  def player_two_ship_valid?(player_ship)
     player_ship_formated = player_ship.split
     @two_unit_ship.include? (player_ship_formated)
   end
 
-  def check_if_player_three_ship_works(player_ship)
+  def player_three_ship_valid?(player_ship)
     player_ship_formated = player_ship.split
     @three_unit_ship.include? (player_ship_formated)
   end
