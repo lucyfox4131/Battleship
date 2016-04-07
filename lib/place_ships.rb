@@ -1,4 +1,6 @@
 class PlaceShips
+  attr_reader :two, :three
+
   def initialize
     @two_unit_ship = [["A1","A2"],["A2", "A3"],["A4", "A5"],["B1","B2"],["B2","B3"],["B3","B4"],["C1","C2"],["C2","C3"],["C3","C4"],
     ["D1","D2"],["D2","D3"],["D3", "D4"], ["A1","B1"],["B1","C1"],["C1","D1"],["A2","B2"],["B2","C2"],["C2","D2"],
@@ -6,21 +8,26 @@ class PlaceShips
     @three_unit_ship = [['A1','A2','A3'],['A2','A3','A4'],['B1','B2','B3'],['B2','B3','B4'],['C1','C2','C3'],['C2','C3','C4'],
     ['D1','D2','D3'],['D2','D3','D4'],['A1','B1','C1'],['B1','C1','D1'],['A2','B2','C2'],['B2','C2','D2'],['A3','B3','C3'],
     ['B3','C3','D3'],['A4','B4','C4'],['B4','C4','D4']]
+    place_computer_ships
+    @two
+    @three
   end
 
   def place_computer_ships
-    p two_unit_ship = @two_unit_ship.sample
-    p three_unit_ship = @three_unit_ship.sample
+    puts 'HEYYY DOES THIS WORK'
+    @two = @two_unit_ship.sample
+    @three = @three_unit_ship.sample
   end
 
   def check_if_ships_overlap?(two_unit_ship, three_unit_ship)
     two = two_unit_ship.split
     three = three_unit_ship.split
     result = three & two
-    if result.empty? #continue
-      puts "YEAH BUDDY!"
+    if result.empty?
+      two
+      three
     else
-      puts "THESE ARE THE DUPLICATES #{result}"
+      puts "THESE ARE THE DUPLICATES #{result}. Please guess again and do not use the same coordinates: "
     end
   end
 
@@ -36,7 +43,7 @@ class PlaceShips
 
 end
 
-# 
+#
 # game = PlaceShips.new
 # puts game.check_if_player_two_ship_works("A1 A2")
 # puts game.check_if_player_three_ship_works("A1 A2 A3")
