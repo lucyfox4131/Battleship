@@ -6,10 +6,19 @@ class Game
   def initialize
     @computer_board = Board.new(4, "Computer Board")
     @user_board = Board.new(4, "User Board")
-    @computer_board.output_board
-    @user_board.output_board
     @computer_board.place_computer_ships
     @computer_board.output_board
+  end
+
+  def get_player_ships
+    message = Messages.new
+    message.player_placement
+    player_choice = gets.chomp.upcase.split
+    #["A1", "A2"]
+  end
+
+  def create_coordinate_hash(array)
+    coordinates = {}
   end
 
 

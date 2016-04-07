@@ -1,4 +1,4 @@
-require 'pry'
+require './lib/ship'
 
 class Board
 
@@ -29,7 +29,6 @@ class Board
 
   def place_computer_ships
     puts "PLACING SHIPS"
-    # place_computer_ship(3)
     destroyer = Ship.new(place_computer_ship(3), 3, "Destroyer")
     output_board
     ship_location = nil
@@ -54,10 +53,13 @@ class Board
         if( @board[start_row][start_column+i] == 'S' )
           return false
         end
-        update_board(start_row, start_column + i, "S")
-        ship_array << {x => start_row, y => (start_column +i)}
+        ship_array << {:y => start_row, :x => (start_column +i)}
         i += 1
       end
+      ship_array.each do |location|
+        update_board(location[:x], location[:y], "S")
+      end
+      p ship_array
       return ship_array
     else
       #vertical
@@ -68,10 +70,13 @@ class Board
         if( @board[start_row][start_column+i] == 'S' )
           return false
         end
-        update_board(start_row + i, start_column, "S")
-        ship_array << {x => (start_row + i), y => start_column}
+        ship_array << {:y => (start_row + i), :x => start_column}
         i += 1
       end
+      ship_array.each do |location|
+        update_board(location[:x], location[:y], "S")
+      end
+      p ship_array
       return ship_array
     end
   end
